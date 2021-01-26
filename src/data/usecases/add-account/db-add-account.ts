@@ -8,6 +8,7 @@ export class DbAddAccount implements AddAccount {
     this.encrypter = encrypter
     this.addAccountRepository = addAccountRepository
   }
+
   // eslint-disable-next-line @typescript-eslint/lines-between-class-members
   async add (accountData: AddAccountModel): Promise<AccountModel> {
     const hashedPassword = await this.encrypter.encrypt(accountData.password)
