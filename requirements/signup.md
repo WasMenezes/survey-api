@@ -17,7 +17,7 @@
 2. ✅ Returns **400** error if name, email, password or passwordConfirmation are not provided by the client
 3. ✅ Returns **400** error if password and passwordConfirmation are not the same
 4. ✅ Returns **400** error if the email provieded is invalid
-5. ⛔ Returns **403** error if the email provided is already in use
+5. ✅ Returns **403** error if the email provided is already in use
 6. ✅ Returns **500** error if get an error when trying to generate an encrypted password
 7. ✅ Returns **500** error if get an error when trying to create a user account
 8. ✅ Returns **500** error if get an error when trying generates the access token
