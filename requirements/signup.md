@@ -4,7 +4,7 @@
 2. ✅ Validates mandatory data **name**, **email**, **password** and **passwordConfirmation**
 3. ✅ Validates that **password** and **passwordConfirmation** are the same
 4. ✅Validates that field **email** is a valid email
-5. ⛔ **Validate** if a user already exists with the email provided
+5. ✅ **Validate** if a user already exists with the email provided
 6. ✅ Generate a **encrypted** password  (this password cannot be decrypted)
 7. ✅ **Create** an account for the user with data entered, **replacing** the password for the **encrypted** password
 8. ✅ Generates an access **token** by user id

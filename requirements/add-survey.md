@@ -10,5 +10,5 @@
 
 1. ⛔ Return Error ** 404 ** if anthe API does not exist
 2. ⛔ Return error ** 403 ** if the user is not an administrator
-3. ⛔ Returns error ** 400 ** if question or non-main answers provided by the customer
+3. ✅ Returns error ** 400 ** if question or non-main answers provided by the customer
 4. ⛔ Returns error ** 500 ** if there is an error when trying to create a poll
