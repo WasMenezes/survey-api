@@ -1,6 +1,6 @@
 import { SurveyAnswerModel } from './survey-answer'
 
-export interface SurveyModel {
+export type SurveyModel = {
   id: string
   question: string
   answers: SurveyAnswerModel[]

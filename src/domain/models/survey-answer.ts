@@ -1,4 +1,4 @@
-export interface SurveyAnswerModel{
+export type SurveyAnswerModel = {
   image?: string
   answer: string
 }
