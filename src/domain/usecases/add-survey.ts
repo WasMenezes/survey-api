@@ -1,4 +1,4 @@
-import { SurveyModel } from '@/presentation/controllers/survey/load-surveys/load-surveys-controller-protocols'
+import { SurveyModel } from '@/domain/models/survey'
 
 export type AddSurveyModel = Omit<SurveyModel, 'id'>
 
