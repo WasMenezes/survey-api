@@ -1,5 +1,5 @@
 import { SurveyModel } from '../models/survey'
 
-export interface LoadSurveys {
-  loadById (): Promise<SurveyModel>
+export interface LoadSurveyById {
+  loadById (id: string): Promise<SurveyModel>
 }
