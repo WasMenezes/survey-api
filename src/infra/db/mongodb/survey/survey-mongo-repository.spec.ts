@@ -20,6 +20,7 @@ describe('Survet Mongo Repository', () => {
   const makeSut = (): SurveyMongoRepository => {
     return new SurveyMongoRepository()
   }
+
   describe('add()', () => {
     test('should add a survey on success', async () => {
       const sut = makeSut()
@@ -66,6 +67,23 @@ describe('Survet Mongo Repository', () => {
       const sut = makeSut()
       const surveys = await sut.loadAll()
       expect(surveys.length).toBe(0)
+    })
+  })
+
+  describe('loadById()', () => {
+    test('should load survey by id on success', async () => {
+      const res = await surveyCollection.insertOne({
+        question: 'any_question',
+        answers: [{
+          image: 'any_image',
+          answer: 'any_answer'
+        }],
+        date: new Date()
+      })
+      const id = res.ops[0]._id
+      const sut = makeSut()
+      const survey = await sut.loadById(id)
+      expect(survey).toBeTruthy()
     })
   })
 })
