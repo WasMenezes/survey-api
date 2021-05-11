@@ -1,0 +1,51 @@
+import { SaveSurveyResultController } from './save-result-controller'
+import { HttpRequest, LoadSurveyById, SurveyModel } from './save-result-controller-protocols'
+
+const makeFakeSurvey = (): SurveyModel => {
+  return {
+    id: 'any_id',
+    question: 'any_question',
+    answers: [{
+      image: 'any_image',
+      answer: 'any_answer'
+    }],
+    date: new Date()
+  }
+}
+
+const makeFakeRequest = (): HttpRequest => ({
+  params: {
+    surveyId: 'any_survey_id'
+  }
+})
+
+const makeLoadSurveyById = (): LoadSurveyById => {
+  class LoadSurveyByIdStub implements LoadSurveyById {
+    async loadById (id: string): Promise<SurveyModel> {
+      return new Promise(resolve => resolve(makeFakeSurvey()))
+    }
+  }
+  return new LoadSurveyByIdStub()
+}
+
+const makeSut = (): SutTypes => {
+  const loadSurveyByIdStub = makeLoadSurveyById()
+  const sut = new SaveSurveyResultController(loadSurveyByIdStub)
+  return {
+    sut,
+    loadSurveyByIdStub
+  }
+}
+
+type SutTypes = {
+  sut: SaveSurveyResultController
+  loadSurveyByIdStub: LoadSurveyById
+}
+describe('SaveSurveyResult Controller', () => {
+  test('Should call LoadSurveyById with correct values', async () => {
+    const { sut, loadSurveyByIdStub } = makeSut()
+    const loadByIdSpy = jest.spyOn(loadSurveyByIdStub, 'loadById')
+    await sut.handle(makeFakeRequest())
+    expect(loadByIdSpy).toHaveBeenCalledWith('any_survey_id')
+  })
+})
