@@ -17,3 +17,4 @@
 4. ⛔ Returns error **403** if the response sent by the client is an invalid response
 5. ⛔ Returns error **500** if an error occurs when trying to create the poll result
 6. ⛔ Returns **500** error if there is an error when trying to load the poll
+6. ⛔ Returns **500** error if an error occurs when load the poll
