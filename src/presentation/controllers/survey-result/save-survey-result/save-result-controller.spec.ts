@@ -2,6 +2,7 @@ import { InvalidParamError } from '@/presentation/errors'
 import { forbidden, ok, serverError } from '@/presentation/helpers/http/http-helper'
 import { SaveSurveyResultController } from './save-result-controller'
 import { HttpRequest, LoadSurveyById, SaveSurveyResult, SaveSurveyResultParams, SurveyModel, SurveyResultModel } from './save-result-controller-protocols'
+import { throwError } from '@/domain/test'
 import MockDate from 'mockdate'
 
 const makeFakeSurvey = (): SurveyModel => {
@@ -93,7 +94,7 @@ describe('SaveSurveyResult Controller', () => {
 
   test('should return 500 if LoadSurveyById throws', async () => {
     const { sut, loadSurveyByIdStub } = makeSut()
-    jest.spyOn(loadSurveyByIdStub, 'loadById').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
+    jest.spyOn(loadSurveyByIdStub, 'loadById').mockImplementationOnce(throwError)
     const httpResponse = await sut.handle(makeFakeRequest())
     expect(httpResponse).toEqual(serverError(new Error()))
   })
@@ -113,7 +114,7 @@ describe('SaveSurveyResult Controller', () => {
 
   test('Should call SaveSurveyResult with correct values', async () => {
     const { sut, saveSurveyResultStub } = makeSut()
-    const saveSpy = jest.spyOn(saveSurveyResultStub, 'save').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
+    const saveSpy = jest.spyOn(saveSurveyResultStub, 'save').mockImplementationOnce(throwError)
     await sut.handle(makeFakeRequest())
     expect(saveSpy).toHaveBeenCalledWith({
       surveyId: 'any_survey_id',
@@ -125,7 +126,7 @@ describe('SaveSurveyResult Controller', () => {
 
   test('should return 500 if SaveSurveyResult throws', async () => {
     const { sut, saveSurveyResultStub } = makeSut()
-    jest.spyOn(saveSurveyResultStub, 'save').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
+    jest.spyOn(saveSurveyResultStub, 'save').mockImplementationOnce(throwError)
     const httpResponse = await sut.handle(makeFakeRequest())
     expect(httpResponse).toEqual(serverError(new Error()))
   })
